@@ -1,0 +1,4 @@
+01 - para instalar o react pacote
+npx create-react-app .
+02 - para ezecutar
+start

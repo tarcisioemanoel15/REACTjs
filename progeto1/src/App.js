@@ -1,56 +1,74 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
+class App extends Component { 
+   state = {
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'asdf',
-      conter: 0
+      counter:0,
+      posts: [
+        { 
+          id: 1,
+          title: "Titulo 1",
+          body: "corpo 1" 
+        },
+
+        { 
+          id: 2,
+          title: "Titulo 2",
+          body: "corpo 2"
+        },
+
+        { 
+          id: 3,
+          title: "Titulo 3",
+          body: "corpo 3" 
+        },
+
+      ]
+
     };
-  }
+    timeoutUpdate = null;
 
-  /*Se for uma função sem ser erow function
-  tem que fazer o bain ex a baixo dentro do construtor
-  this.funcao = this.funcao.bind(this);*/
+    componentDidMount(){
+      this.handeleTimeAut();
+    }
 
-  handdlePClick = () => {
-    this.setState({ name: 'emanoel' })
-  }
+    componentDidUpdate(){
+      // clearTimeout(this.timeoutUpdate);
+      this.handeleTimeAut();
 
-  handdleAClick = (e) => {
-    e.preventDefault();
-    const { conter } = this.state;
-    this.setState({ conter: conter + 1 })
-  }
+    }
+
+    componentWillUnmount(){
+      clearTimeout(this.timeoutUpdate);
+
+    }
+    
+handeleTimeAut=()=>{
+  const { posts, counter } = this.state;
+
+    posts[0].title = 'O Titulo Mudou';
 
 
+    this.timeoutUpdate = setTimeout(()=>{
+      this.setState({ posts, counter: counter + 1 })
+    },10000);
+  
+}
 
-
-  render() {
-    const { name, conter } = this.state;
+    render() {
+    const { posts, counter } = this.state;
 
     return (
       <div className="App" >
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p onClick={this.handdlePClick} >
-            Testesssss, {name} {conter}
-          </p>
 
-          <a
-            onClick={this.handdleAClick}
-
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {<h1>{counter}</h1>}
+          {posts.map(post => (
+            <div key={post.id}>          
+            <h1>{post.body}</h1>
+            <p>{post.title}</p>
+            </div>
+          ) )}
       </div >
     );
   }

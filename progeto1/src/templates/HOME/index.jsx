@@ -3,6 +3,7 @@ import './styles.css';
 import { Posts } from '../../components/Posts';
 import { loadPosts } from '../../ultil/loas-post';
 import { Button } from '../../Button';
+import { TextInput } from '../../TextInput';
 
 export class Home extends Component {
   state = {
@@ -45,48 +46,63 @@ export class Home extends Component {
     this.setState({ posts, page: nextPage });
   }
 
-handleChange =(e) => {
-  const {value} = e.target;
-  this.setState({searchValue: value});
-}
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ searchValue: value });
+  }
 
   render() {
     const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = page + postsPerPage >= allPosts.length;
-  
-  
-  
+
+    const filteredPosts = !!searchValue ?
+      allPosts.filter(post => {
+        return post.title.toLowerCase().includes(
+          searchValue.toLocaleLowerCase()
+        );
+      })
+      : posts;
+
+
     return (
 
       <section className='container'>
 
-        {!!searchValue && (
-          <>
-      <h1> SearchValue:{searchValue}</h1> <br/> <br/>
-          </>
+        <div className='search-container'>
+
+          {!!searchValue && (
+            <h1> SearchValue:{searchValue}</h1>
+          )}
+
+          <TextInput
+            searchValue={searchValue}
+            handleChange={this.handleChange}
+          />
+
+        </div>
+
+        {filteredPosts.length > 0 && (
+          <Posts posts={filteredPosts} />
+        )}
+
+        {filteredPosts.length == 0 && (
+          <p>Não existe postes =(</p>
         )}
 
 
-        <input 
-        onChange={this.handleChange}
-        value={searchValue}
-        type={'search'}
-        
-        /> <br/> <br/> <br/>
 
-        <Posts posts={posts} />
 
         <div className='button-container'>
 
-        {!searchValue && (
+          {!searchValue && (
 
-          <Button
-            text="Load M Posts"
-            onClick={this.loadMorePosts}
-            disabled={noMorePosts}
+            <Button
+              text="Load M Posts"
+              onClick={this.loadMorePosts}
+              disabled={noMorePosts}
 
-          />
-        )}
+            />
+          )}
 
 
         </div>

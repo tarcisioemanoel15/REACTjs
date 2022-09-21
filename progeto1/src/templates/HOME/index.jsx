@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import './styles.css';
-// import { PostCard } from './components/PostCard';
 import { Posts } from '../../components/Posts';
 import { loadPosts } from '../../ultil/loas-post';
 import { Button } from '../../Button';
@@ -11,7 +10,8 @@ export class Home extends Component {
     allPosts: [],
 
     page: 0,
-    postsPerPage: 3
+    postsPerPage: 3,
+    searchValue: ''
   };
 
   async componentDidMount() {
@@ -24,8 +24,6 @@ export class Home extends Component {
     this.setState({
       posts: postsAndPhotos.slice(page, postsPerPage),
       allPosts: postsAndPhotos
-
-
     });
 
   }
@@ -47,16 +45,40 @@ export class Home extends Component {
     this.setState({ posts, page: nextPage });
   }
 
+handleChange =(e) => {
+  const {value} = e.target;
+  this.setState({searchValue: value});
+}
+
   render() {
-    const { posts, page, postsPerPage, allPosts } = this.state;
+    const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = page + postsPerPage >= allPosts.length;
+  
+  
+  
     return (
 
       <section className='container'>
+
+        {!!searchValue && (
+          <>
+      <h1> SearchValue:{searchValue}</h1> <br/> <br/>
+          </>
+        )}
+
+
+        <input 
+        onChange={this.handleChange}
+        value={searchValue}
+        type={'search'}
+        
+        /> <br/> <br/> <br/>
+
         <Posts posts={posts} />
 
         <div className='button-container'>
 
+        {!searchValue && (
 
           <Button
             text="Load M Posts"
@@ -64,12 +86,11 @@ export class Home extends Component {
             disabled={noMorePosts}
 
           />
+        )}
+
 
         </div>
-
-
       </section>
-
     );
   }
 }

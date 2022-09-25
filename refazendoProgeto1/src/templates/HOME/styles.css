@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
-  background: rgb(8, 76, 139);
+  background: #eee;
   padding: 30px;
 }
 
@@ -12,3 +12,10 @@
   align-items: flex-end;
 }
 
+.search-container{
+  margin-bottom: 30px;
+}
+
+.search-container h1{
+   margin-bottom: 30px;
+}

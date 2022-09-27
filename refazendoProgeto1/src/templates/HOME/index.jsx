@@ -85,7 +85,7 @@ export class Home extends Component {
           <Posts posts={filteredPosts} />
         )}
 
-        {filteredPosts.length == 0 && (
+        {filteredPosts.length === 0 && (
           <p>Não existe postes =(</p>
         )}
 
@@ -97,7 +97,7 @@ export class Home extends Component {
           {!searchValue && (
 
             <Button
-              text="Load M Posts"
+              text="load more"
               onClick={this.loadMorePosts}
               disabled={noMorePosts}
 

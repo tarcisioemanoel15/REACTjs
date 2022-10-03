@@ -44,7 +44,7 @@ Posts.propTypes = {
 //                 id={post.id}
 //                 cover={post.cover}
 //                 />
-                
+
 //                 ))}
 
 //     </div >

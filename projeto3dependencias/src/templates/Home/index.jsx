@@ -43,8 +43,8 @@ export const Home = () => {
   const noMorePosts = page + postsPerPage >= allPosts.length;
   const filteredPosts = searchValue
     ? allPosts.filter((post) => {
-      return post.title.toLowerCase().includes(searchValue.toLowerCase());
-    })
+        return post.title.toLowerCase().includes(searchValue.toLowerCase());
+      })
     : posts;
 
   return (
@@ -65,26 +65,6 @@ export const Home = () => {
     </section>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { Component } from 'react';
 // import './styles.css';
@@ -116,7 +96,6 @@ export const Home = () => {
 //     });
 
 //   }
-
 
 //   loadMorePosts = () => {
 //     const {
@@ -151,7 +130,6 @@ export const Home = () => {
 //       })
 //       : posts;
 
-
 //     return (
 
 //       <section className='container'>
@@ -177,9 +155,6 @@ export const Home = () => {
 //           <p>Não existe postes =(</p>
 //         )}
 
-
-
-
 //         <div className='button-container'>
 
 //           {!searchValue && (
@@ -192,10 +167,8 @@ export const Home = () => {
 //             />
 //           )}
 
-
 //         </div>
 //       </section>
 //     );
 //   }
 // }
-

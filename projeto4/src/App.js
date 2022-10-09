@@ -1,68 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
-/*
-class App extends Component {
-  state = {
-    reverse: false,
-  };
+import { useEffect, useState } from 'react';
 
-  handleClick = () => {
-    const { reverse } = this.state;
-    this.setState({ reverse: !reverse });
-  };
-  render() {
-    const { reverse } = this.state;
-    const reverseClass = reverse ? 'reverse' : '';
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
-
-          <button type="button" onClick={this.handleClick}>
-            {' '}
-            REVERSE {reverseClass}
-          </button>
-        </header>
-        </div>
-        );
-      }
-    }
-    */
+const eventfn = () => {
+  console.log('h1 clicado');
+};
 
 function App() {
-  const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
-  const reverseClass = reverse ? 'reverse' : '';
+  const [counter2, setCounter2] = useState(0);
 
-  const handleClick = () => {
-    setReverse((reverse) => !reverse);
-  };
+  // componentDidUpdate - executa toda vez que o componente for atualizado
+  /*
+  useEffect(() => {
+    console.log('componentDidUpdate');
+  });
+  */
 
-  const increment = () => {
-    setCounter((counter) => counter + 1);
-  };
+  // componentDid mount executa 1X
+  /*
+   */
+  useEffect(() => {
+    document.querySelector('h1')?.addEventListener('click', eventfn);
+    // console.log('componentDidMount');
+
+    // componentWillumount - limpeza
+    return () => {
+      document.querySelector('h1')?.removeEventListener('click', eventfn);
+    };
+  }, []);
+
+  // com dependencia - ezecuta toda vez que a dependencia mudar
+  /*
+   */
+  useEffect(() => {
+    console.log('contador mudou ', counter);
+  }, [counter]);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
-
-        <h1>Contador: {counter}</h1>
-        <p>
-          <button type="button" onClick={handleClick}>
-            {' '}
-            REVERSE {reverseClass}
-          </button>
-        </p>
-
-        <p>
-          <button type="button" onClick={increment}>
-            {' '}
-            Incrementa
-          </button>
-        </p>
-      </header>
+      <p>Test 01</p>
+      <h1>
+        C1: {counter} C2: {counter2}
+      </h1>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button onClick={() => setCounter2(counter2 + 2)}>+2</button>
     </div>
   );
 }

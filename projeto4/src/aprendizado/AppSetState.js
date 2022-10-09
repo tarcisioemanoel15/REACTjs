@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './AppSetState.css';
 import { useState } from 'react';
 /*
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
     }
     */
 
-function App() {
+function Appy() {
   const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
   const reverseClass = reverse ? 'reverse' : '';
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default Appy;

@@ -1,77 +1,40 @@
-import P from 'prop-types';
-import { useEffect, useMemo, useState, useRef } from 'react';
+// import P from 'prop-types';
+import React, { useContext } from 'react';
 import './App.css';
 
-const Post = ({ post, handleClick }) => {
-  console.log('Filho renderizou');
+const globalStile = {
+  title: 'Title context',
+  body: 'O Corpo BODY',
+  counter: 0,
+};
+const GlobalContext = React.createContext();
+
+// eslint-disable-next-line
+const Div = ({ children }) => {
   return (
-    <div key={post.id} className="post">
-      <h1 style={{ fontSize: '14px' }} onClick={() => handleClick(post.title)}>
-        {post.title}
-      </h1>
-      <p>{post.body}</p>
-    </div>
+    <>
+      <H1 />;
+      <P />
+    </>
   );
 };
 
-Post.propTypes = {
-  post: P.shape({
-    id: P.number,
-    title: P.string,
-    body: P.string,
-  }),
-  handleClick: P.func,
+// eslint-disable-next-line
+const H1 = () => {
+  const theContext = useContext(GlobalContext);
+  return <h1>{theContext.title}</h1>;
+};
+
+const P = () => {
+  const theContext = useContext(GlobalContext);
+  return <p>{theContext.body}</p>;
 };
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [value, setValue] = useState('');
-  const input = useRef(null);
-  const contador = useRef(0);
-
-  console.log('Pai renderizou!');
-
-  // Component did mount
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((r) => r.json())
-      .then((r) => setPosts(r));
-  }, []);
-
-  useEffect(() => {
-    input.current.focus();
-    console.log(input.current);
-  }, [value]);
-
-  useEffect(() => {
-    contador.current++;
-  });
-
-  const handleClick = (value) => {
-    setValue(value);
-  };
-
   return (
-    <div className="App">
-      <h6>Renderizou: {contador.current}x</h6>
-      <p>
-        <input
-          ref={input}
-          type="search"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </p>
-      {useMemo(() => {
-        return (
-          posts.length > 0 &&
-          posts.map((post) => {
-            return <Post key={post.id} post={post} handleClick={handleClick} />;
-          })
-        );
-      }, [posts])}
-      {posts.length <= 0 && <p>Ainda não existem posts.</p>}
-    </div>
+    <GlobalContext.Provider value={globalStile}>
+      <Div />;
+    </GlobalContext.Provider>
   );
 }
 

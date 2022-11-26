@@ -1,3 +1,0 @@
-01- npm test
-02- npm test -- --coverage
-03- npm test -- --watchAll="false" --coverage 

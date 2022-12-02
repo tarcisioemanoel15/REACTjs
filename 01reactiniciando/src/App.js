@@ -1,13 +1,11 @@
 import './App.css';
-import ApiClass from './Components/ApiClass';
-
+import Home from "./Components/ApiClass/Templates/Home";
 function App() {
   return (
     <div className="App">
 
       <h1>Tarcisio</h1>
-      <ApiClass />
-
+      <Home />
     </div>
 
   );

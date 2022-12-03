@@ -4,6 +4,7 @@ import "./style.css";
 import { loadPosts } from "../../Components/loadPosts/loadPosts";
 import { Posts } from '../../Components/Posts';
 import { Button } from "../../Components/Button";
+import { TextInput } from '../../Components/TextInput';
 
 class Home extends Component {
 
@@ -62,7 +63,7 @@ class Home extends Component {
 
     // Para o input 
     const filteredPosts = !!searchValue ?
-      posts.filter(post => {
+      allPosts.filter(post => {
 
         return post.title.toLowerCase().includes(
           searchValue.toLowerCase()
@@ -75,25 +76,32 @@ class Home extends Component {
 
     return (
       <section className='container'>
+        <div className="search-container">
 
-        {!!searchValue && (
-          <>
-            <h1>{searchValue}</h1>
-            <br /><br />
-            <br /><br />
-          </>
+          {!!searchValue && (
+            <>
+              <h1>{searchValue}</h1>
+            </>
+          )}
+
+          <TextInput
+            handleChange={this.handleChange}
+            value={searchValue}
+          />
+
+        </div>
+
+
+        {filteredPosts.length > 0 && (
+          <Posts posts={filteredPosts} />
         )}
 
+        {filteredPosts.length === 0 && (
 
-        <input
-          onChange={this.handleChange}
-          value={searchValue}
-          type="search" />
-        <br /><br />
+          <p>Não existem posts :( </p>
 
+        )}
 
-
-        <Posts posts={filteredPosts} />
 
 
         {!searchValue && (

@@ -11,3 +11,11 @@
   background-color: rgb(216, 205, 205);
   padding: 30px;
 }
+
+.search-container {
+  margin-bottom: 30px;
+}
+
+.search-container h1 {
+  margin-bottom: 30px;
+}

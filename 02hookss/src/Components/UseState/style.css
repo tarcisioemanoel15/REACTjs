@@ -1,0 +1,36 @@
+.containerState {
+  width: 250px;
+  height: 250px;
+  background-color: aqua;
+  animation: animando infinite 20s linear;
+}
+
+@keyframes animando {
+  fron {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+
+  }
+}
+
+
+
+
+.reverse {
+  width: 250px;
+  height: 250px;
+  animation: reversee infinite 20s linear;
+}
+
+@keyframes reversee {
+  fron {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}

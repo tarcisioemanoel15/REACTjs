@@ -1,8 +1,20 @@
+.containerUseStateuser {
+  background-color: rgb(121, 175, 223);
+  padding: 30px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
 .containerState {
   width: 250px;
   height: 250px;
-  background-color: aqua;
-  animation: animando infinite 20s linear;
+  background-image: -webkit-radial-gradient(red, blue);
+  margin: auto;
+  border-radius: 20px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  animation: animando infinite 60s linear;
 }
 
 @keyframes animando {
@@ -16,12 +28,7 @@
   }
 }
 
-
-
-
 .reverse {
-  width: 250px;
-  height: 250px;
   animation: reversee infinite 20s linear;
 }
 
@@ -33,4 +40,32 @@
   to {
     transform: rotate(-360deg);
   }
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.novoTesteS h1 {
+
+  color: blue;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.Emanoel h1 {
+  color: rgb(255, 0, 0);
+}
+
+.Emanoel button {
+  margin: 25px;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.containeruserState {
+  background-color: aquamarine;
+  text-align: center;
+
+  display: grid;
+  padding: 50px;
 }

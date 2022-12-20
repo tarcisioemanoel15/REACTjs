@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 
-const useMyHook = (cb) => {
+const useMyHook = (cb, delay = 1000) => {
   const savedCb = useRef();
 
   useEffect(() => {
@@ -11,18 +11,45 @@ const useMyHook = (cb) => {
   useEffect(() => {
     const interval = setInterval(() => {
       savedCb.current();
-    }, 2000);
+    }, delay);
     return () => clearInterval(interval);
-  }, []);
+  }, [delay]);
 };
 
 export default function MyHook() {
   const [couter, setCounter] = useState(0);
-  useMyHook(() => setCounter((c) => c + 1));
+  const [delay, setDelay] = useState(1000);
+  const [incrementor, setIncrementor] = useState(100);
+
+  useMyHook(() => setCounter((c) => c + 1), delay);
   return (
     <div className="myHook">
       <h1>Criando meu propio Hook</h1>
-      <h1>Contador: {couter}</h1>
+      <h1>Contador: couter:{couter}</h1>
+      <h1>Contador: delay:{delay}</h1>
+
+      <button
+        onClick={() => {
+          setDelay((d) => d + incrementor);
+        }}
+      >
+        +{incrementor}
+      </button>
+
+      <button
+        onClick={() => {
+          setDelay((d) => d - incrementor);
+        }}
+      >
+        -{incrementor}
+      </button>
+      <input
+        type="number"
+        value={incrementor}
+        onChange={(e) => {
+          setIncrementor(Number(e.target.value));
+        }}
+      />
     </div>
   );
 }

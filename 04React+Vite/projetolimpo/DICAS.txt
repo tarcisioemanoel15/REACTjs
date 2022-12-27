@@ -1,0 +1,10 @@
+01- instalando react + vite  
+			|   nome da pasta	     |
+ npm create vite@latest projetolimpo-react-router-dom -- --template react-ts
+
+
+02- abrir na pasta  e instalar e abrir o Node
+ cd projetolimpo-react-router-dom ; npm install ; code . ;
+
+03- para rodar o app
+ npm run dev

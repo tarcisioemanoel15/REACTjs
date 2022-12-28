@@ -11,11 +11,20 @@ export const Menu = () => {
         </li>
 
         <li>
+          <Link to='/abc' state={'Tarcisio'}>ABC</Link>
+        </li>
+
+
+        <li>
           <Link to='/Posts'>Posts</Link>
         </li>
 
         <li>
           <Link to='/Posts/10'>Posts 10</Link>
+        </li>
+
+        <li>
+          <Link to='/redirect'>Redirect</Link>
         </li>
       </ul>
 

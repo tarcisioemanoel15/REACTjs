@@ -6,6 +6,10 @@ import './styles/global.css';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Menu } from './components/Menu';
+import { Redirect } from './components/Redirect';
+import NotFound from './components/NotFound';
+import Post from './components/Post';
+import Abc from './components/Abc';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -15,9 +19,16 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/Posts/:id" element={<Posts />} />
-        <Route path="/Posts" element={<Posts />} />
+        <Route path="/abc" element={<Abc />} />
 
+
+        <Route path="/Posts/" element={<Posts />} >
+          <Route path=':id' element={<Post />} />
+        </Route>
+
+        <Route path="/Posts" element={<Posts />} />
+        <Route path="/redirect" element={<Redirect />} />
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </BrowserRouter>
